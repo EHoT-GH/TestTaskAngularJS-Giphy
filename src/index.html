@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="testApp">
+<head>
+  <meta charset="UTF-8">
+  <title>AngularJS Test Task</title>
+  <!-- build:css css/main.min.css -->
+  <link rel="stylesheet" href="css/main.css">
+  <!-- endbuild -->
+</head>
+<body>
+
+<div class="login-page" ng-controller="loginCtrl as login" ng-class="login.loginState ? 'invisible' : 'visible'">
+  <div class="login-wrapper">
+    <form name="loginForm" novalidate>
+      <input class="inputs fields"
+             ng-class="loginForm.userName.$valid ? 'valid' : 'invalid'" id="name"
+             name="userName"
+             type="text" placeholder="Enter your login"
+             ng-model="login.userName" required pattern="^[a-zA-Z\-]+$">
+      <input class="inputs fields"
+             ng-class="loginForm.userPassword.$valid ? 'valid' : 'invalid'" id="pass"
+             name="userPassword" type="password"
+             ng-model="login.userPassword" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
+             title="Six or more characters">
+      <input class="inputs button" id="send" type="submit" value="Log In" ng-disabled="loginForm.$invalid"
+             ng-click="login.login(login.userName, login.userPassword)">
+    </form>
+  </div>
+</div>
+<div class="gif-wrapper" ng-controller="gifCtrl as gif" ng-show="gif.loginState">
+  <div class="header">
+    <div class="user-info">
+      <div class="user-name">{{gif.user.name}}</div>
+      <div class="log-out" ng-click="gif.logOut()">Log Out</div>
+    </div>
+    <div class="search">
+      <input type="text" placeholder="&#128270; Search" ng-model="gif.searchStr" ng-change="gif.searchGif()"
+             ng-model-options='{ debounce: 1000 }'>
+    </div>
+  </div>
+  <div class="textFav">FAVORITES <span>{{gif.favorites.length}}</span></div>
+  <div class="favorites">
+    <div class="gif" ng-repeat="favItem in gif.favorites">
+      <img src="{{favItem.images.fixed_height_downsampled.url}}" alt="">
+      <div class="fav del" ng-click="gif.removeFromFavorites(favItem.id)">--</div>
+    </div>
+  </div>
+  <div class="textCon">GIPHYS</div>
+  <div class="content">
+    <div ng-if="gif.loadProcess" class="loader"></div>
+    <div ng-if="!gif.list.length && !gif.loadProcess" class="nothing">Nothing to show!</div>
+    <div class="gif" ng-repeat="item in gif.list">
+      <img src="{{item.images.fixed_height_downsampled.url}}" alt="">
+      <div class="fav add" ng-click="gif.addToFavorites(item.id)">+</div>
+    </div>
+  </div>
+</div>
+
+<!-- build:js scripts/combined.min.js -->
+<script src="libs/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
+<!-- endbuild -->
+<!-- build:js scripts/main.min.js -->
+<script src="js/app.js"></script>
+<script src="js/services/login.service.js"></script>
+<script src="js/services/giphyAPI.service.js"></script>
+<script src="js/services/localStorage.service.js"></script>
+<script src="js/controllers/login.controller.js"></script>
+<script src="js/controllers/gifapp.controller.js"></script>
+<!--<script src="js/directives/enter-sender.directive.js"></script>-->
+<!-- endbuild -->
+</body>
+</html>

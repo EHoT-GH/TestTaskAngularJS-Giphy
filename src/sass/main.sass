@@ -1,0 +1,237 @@
+@import "vars"
+
+*
+    margin: 0
+    padding: 0
+
+html
+    background-color: $bgc
+
+.login-page
+    top: 0
+    background-color: $bgc
+    padding: 250px 0
+    min-width: 100%
+    min-height: 100%
+    z-index: 666
+
+.login-wrapper
+    background-color: $dark
+    color: $font
+    width: 420px
+    height: 210px
+    margin: auto
+    position: relative
+    border: 1px solid $font
+    text-align: center
+    font-family: $font-family
+    font-size: 20px
+    border-radius: 4px
+    box-shadow: inset 0 0 4px $font, 0 0 20px #000000
+    input
+        display: block
+        height: 42px
+        background-color: $input
+        color: $font
+        width: 380px
+        margin: 20px
+        text-align: center
+        border: 1px solid $input
+        font-family: $font-family
+        font-size: 20px
+        border-radius: 4px
+        transition: all 0.6s ease-in-out
+        &.fields:focus
+            background-color: $bgc
+            box-shadow: inset 0 0 7px #000000
+        &.fields:hover
+            background-color: $hover
+            transition: all 0.6s ease-in-out
+        &.check
+            float: left
+            width: 42px
+            margin: 0
+            outline: none
+        &.button
+            border-radius: 4px
+            transition: all 0.3s ease-in-out
+        &.button:hover
+            background-color: $bgc
+        &.button:enabled
+            box-shadow: inset 0 1px 4px $lightBG
+        &.button:disabled
+            background-color: $dark
+            opacity: 0.5
+            color: $font
+            box-shadow: none
+    label
+        float: left
+        line-height: 42px
+        margin-right: 20px
+
+.valid
+    border: 1px solid $success
+    outline-color: $success
+
+.invalid
+    border: 1px solid $danger
+    outline-color: $danger
+
+.visible
+    display: block
+
+.invisible
+    display: none
+
+.remember-div
+    position: relative
+    display: inline-block
+
+#clear
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 999
+
+// content wrapper
+
+.gif-wrapper
+    .header
+        width: 100%
+        background-color: $dark
+        color: $font
+        box-shadow: 0 0 15px $dark
+        display: inline-block
+        position: fixed
+        top: 0
+        z-index: 555
+        .user-info
+            width: 350px
+            height: 42px
+            background-color: $hover
+            border-radius: 24px
+            float: left
+            margin: 15px
+            position: relative
+            .user-name, .log-out
+                position: absolute
+                top: 0
+                height: 42px
+                line-height: 42px
+                padding: 0 10px
+                font-size: 24px
+                font-family: $font-family
+            .log-out
+                position: absolute
+                right: 0
+                &:hover
+                    cursor: pointer
+                    color: $danger
+        .search
+            input
+                width: 200px
+                height: 42px
+                border-radius: 24px
+                border: 1px solid $font
+                background-color: $input
+                color: $font
+                float: right
+                padding-left: 12px
+                margin: 15px
+                outline: none
+                &:hover
+                    background-color: $hover
+    .textCon, .textFav
+        border-bottom: 1px solid $font
+        position: absolute
+        top: 80px
+        color: $font
+        font-family: $font-family
+    .textCon
+        width: calc(100% - 430px)
+        right: 0
+        padding-left: 5px
+    .textFav
+        width: 420px
+        left: 0
+        padding-left: 10px
+        span
+            width: 20px
+            height: 20px
+            display: inline-block
+            text-align: center
+            background-color: $success
+            color: $dark
+            border-radius: 5px
+    .content
+        width: calc(100% - 430px)
+        right: 0
+    .favorites
+        width: 420px
+        left: 0
+    .content, .favorites
+        padding-top: 5px
+        height: calc(100% - 75px)
+        background-color: $bgc
+        position: absolute
+        top: 101px
+        color: $font
+        align-content: center
+        .gif
+            display: inline-block
+            position: relative
+            user-select: none
+            img
+                height: 190px
+                margin: 3px
+                border-radius: 5px
+                justify-content: space-around
+                &:hover
+                    cursor: pointer
+            .fav
+                position: absolute
+                bottom: 0
+                right: 12px
+                color: transparent
+                font-size: 42px
+                font-weight: 700
+            .add
+                &:hover
+                    cursor: pointer
+                    color: $success
+            .del
+                letter-spacing: -3px
+                &:hover
+                    cursor: pointer
+                    color: $danger
+
+.loader
+    width: 40px
+    height: 40px
+    background-color: #fff
+    margin: 100px auto
+    -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out
+    animation: sk-rotateplane 1.2s infinite ease-in-out
+
+
+@-webkit-keyframes sk-rotateplane
+    0%
+        transform: perspective(120px)
+    50%
+        transform: perspective(120px) rotateY(180deg)
+    100%
+        transform: perspective(120px) rotateY(180deg)  rotateX(180deg)
+
+
+@keyframes sk-rotateplane
+    0%
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+    50%
+        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+    100%
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg)
+
+.nothing
+    font-size: 42px
+    text-align: center
+    font-family: $font-family
